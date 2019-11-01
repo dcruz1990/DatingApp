@@ -8,5 +8,8 @@ namespace DatingApp.API.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Value> Values { get; set; }
+
+        //Siempre se pluraliza el nombre del modelo
+        public DbSet<User> Users { get; set; }
     }
 }
