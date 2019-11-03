@@ -1,21 +1,22 @@
-// tslint:disable-next-line: quotemark
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 @Component({
-  // tslint:disable-next-line: quotemark
-  selector: "app-value",
-  // tslint:disable-next-line: quotemark
-  templateUrl: "./value.component.html",
-  // tslint:disable-next-line: quotemark
-  styleUrls: ["./value.component.css"]
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"]
 })
-export class ValueComponent implements OnInit {
+export class HomeComponent implements OnInit {
   values: any;
+  registerMode = false;
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.getValues();
+    this.getValues()
+  }
+
+  registerToggle() {
+    this.registerMode = !this.registerMode;
   }
 
   getValues() {
@@ -25,8 +26,8 @@ export class ValueComponent implements OnInit {
         this.values = response;
       },
       error => {
+        // tslint:disable-next-line: quotemark
         console.error("Error");
       }
     );
-  }
 }
