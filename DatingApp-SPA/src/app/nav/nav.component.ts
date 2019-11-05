@@ -26,7 +26,7 @@ export class NavComponent implements OnInit {
       },
       error => {
         // tslint:disable-next-line: quotemark
-        console.log("Failed to login");
+        console.log(error);
       }
     );
   }

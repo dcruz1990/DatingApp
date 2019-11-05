@@ -19,10 +19,11 @@ import { FormsModule } from "@angular/forms";
 import { AuthService } from "./_services/auth.service";
 import { HomeComponent } from "./home/home.component";
 import { RegisterComponent } from "./register/register.component";
+import { ErrorInterceptorProvide } from "./_services/error.interceptor";
 @NgModule({
   declarations: [AppComponent, NavComponent, HomeComponent, RegisterComponent],
   imports: [BrowserModule, HttpClientModule, FormsModule],
-  providers: [AuthService],
+  providers: [AuthService, ErrorInterceptorProvide],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
