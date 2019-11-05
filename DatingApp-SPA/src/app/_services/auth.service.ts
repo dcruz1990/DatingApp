@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 // tslint:disable-next-line: quotemark
 import { HttpClient } from "@angular/common/http";
 
+import { JwtHelperService } from "@auth0/angular-jwt";
 // tslint:disable-next-line: quotemark
 import { map } from "rxjs/operators";
 @Injectable({
@@ -13,6 +14,8 @@ export class AuthService {
   // tslint:disable-next-line: quotemark
   baseUrl = "http://localhost:5000/api/auth/";
 
+  jwtHelper = new JwtHelperService();
+  decodedToken: any;
   constructor(private http: HttpClient) {}
 
   login(model: any) {
@@ -23,6 +26,8 @@ export class AuthService {
         if (user) {
           // tslint:disable-next-line: quotemark
           localStorage.setItem("token", user.token);
+          this.decodedToken = this.jwtHelper.decodeToken(user.token);
+          console.log(this.decodedToken);
         }
       })
     );
@@ -31,5 +36,11 @@ export class AuthService {
   register(model: any) {
     // tslint:disable-next-line: quotemark
     return this.http.post(this.baseUrl + "register", model);
+  }
+
+  loggedIn() {
+    // tslint:disable-next-line: quotemark
+    const token = localStorage.getItem("token");
+    return !this.jwtHelper.isTokenExpired(token);
   }
 }

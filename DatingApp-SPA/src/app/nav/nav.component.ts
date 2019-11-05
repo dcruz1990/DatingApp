@@ -2,6 +2,7 @@
 import { Component, OnInit } from "@angular/core";
 // tslint:disable-next-line: quotemark
 import { AuthService } from "../_services/auth.service";
+import { AlertifyService } from "../_services/alertify.service";
 
 @Component({
   // tslint:disable-next-line: quotemark
@@ -14,7 +15,10 @@ import { AuthService } from "../_services/auth.service";
 export class NavComponent implements OnInit {
   model: any = {};
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    private alertify: AlertifyService
+  ) {}
 
   ngOnInit() {}
 
@@ -22,25 +26,24 @@ export class NavComponent implements OnInit {
     this.authService.login(this.model).subscribe(
       next => {
         // tslint:disable-next-line: quotemark
-        console.log("Logedd in sucessfully");
+        this.alertify.success("Loged In SUccefuly");
       },
       error => {
         // tslint:disable-next-line: quotemark
-        console.log(error);
+        this.alertify.error(error);
       }
     );
   }
 
   loggedIn() {
     // tslint:disable-next-line: quotemark
-    const token = localStorage.getItem("token");
-    return !!token;
+    return this.authService.loggedIn();
   }
 
   logout() {
     // tslint:disable-next-line: quotemark
     localStorage.removeItem("token");
     // tslint:disable-next-line: quotemark
-    console.log("loged out");
+    this.alertify.message("Loged out");
   }
 }
