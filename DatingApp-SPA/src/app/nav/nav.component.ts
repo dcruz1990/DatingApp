@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 // tslint:disable-next-line: quotemark
 import { AuthService } from "../_services/auth.service";
 import { AlertifyService } from "../_services/alertify.service";
-
+import { Router } from "@angular/router";
 @Component({
   // tslint:disable-next-line: quotemark
   selector: "app-nav",
@@ -17,7 +17,8 @@ export class NavComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    private router: Router
   ) {}
 
   ngOnInit() {}
@@ -31,6 +32,9 @@ export class NavComponent implements OnInit {
       error => {
         // tslint:disable-next-line: quotemark
         this.alertify.error(error);
+      },
+      () => {
+        this.router.navigate(["/members"]);
       }
     );
   }
@@ -45,5 +49,6 @@ export class NavComponent implements OnInit {
     localStorage.removeItem("token");
     // tslint:disable-next-line: quotemark
     this.alertify.message("Loged out");
+    this.router.navigate(["/home"]);
   }
 }
