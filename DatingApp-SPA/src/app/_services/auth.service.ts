@@ -27,4 +27,9 @@ export class AuthService {
       })
     );
   }
+
+  register(model: any) {
+    // tslint:disable-next-line: quotemark
+    return this.http.post(this.baseUrl + "register", model);
+  }
 }
