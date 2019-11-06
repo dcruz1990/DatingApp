@@ -11,5 +11,7 @@ namespace DatingApp.API.Data
 
         //Siempre se pluraliza el nombre del modelo
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Photo> Photos { get; set; }
     }
 }
