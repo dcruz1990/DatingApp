@@ -14,7 +14,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NavComponent } from "./nav/nav.component";
 import { NgxGalleryModule } from "ngx-gallery";
 // tslint:disable-next-line: quotemark
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 // tslint:disable-next-line: quotemark
 import { AuthService } from "./_services/auth.service";
 import { HomeComponent } from "./home/home.component";
@@ -63,6 +63,7 @@ export function tokenGetter() {
     BsDropdownModule.forRoot(),
     BrowserModule,
     FileUploadModule,
+    ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),

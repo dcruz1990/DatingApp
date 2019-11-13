@@ -25,7 +25,3 @@ export class AppComponent implements OnInit {
     }
   }
 }
-
-
-acuicolapescatun  acu19
- 
