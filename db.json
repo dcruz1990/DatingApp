@@ -2,10 +2,12 @@
   "posts": [
     {
       "id": 1,
-      "title": "hello"
+      "title": "hello",
+      "topic: "programing"
     }
   ],
   "profile": {
     "name": "typicode"
   }
+  
 }
